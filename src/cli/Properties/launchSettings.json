@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "edu": {
+      "commandName": "Project",
+      "commandLineArgs": "-uu /file:test-users.txt /year:2025"
+    }
+  }
+}
