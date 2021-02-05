@@ -1,9 +1,0 @@
-{
-  "Authority": "https://graph.microsoft.com",
-  "Directory": "[your Directory GUID]",         // get this from Azure portal
-  "Application": "[your Application GUID]",     // get this from Azure portal
-  "ClientSecret": "[your Client Secret]",       // get this from Azure portal
-  "DefaultDomainName": "yourschooldomain.edu",   
-  "UsageLocation": "AR",                        // main location of the school, will be used when creating new users
-  "PreferredLanguage": "es-AR"                  // main language at the school, will be used when creating new users
-}
