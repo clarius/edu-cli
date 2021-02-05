@@ -1,0 +1,9 @@
+<Project>
+ <PropertyGroup>
+   <MsGraphName>Microsoft.Graph</MsGraphName>
+   <MsGraphVersion>3.9.0</MsGraphVersion>
+   <!--<MsGraphName>Microsoft.Graph.Beta</MsGraphName>
+   <MsGraphVersion>0.36.0-preview</MsGraphVersion>
+   <DefineConstants>USE_BETA</DefineConstants>-->
+ </PropertyGroup>
+</Project>

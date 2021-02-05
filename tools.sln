@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29811.150
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clarius.Edu.Graph", "graph\Clarius.Edu.Graph.csproj", "{34A6FA42-09B6-48F4-B2A6-18894A559E21}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{07677875-318A-4E64-94D0-0A98310BDFC3}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clarius.Edu.CLI", "cli\Clarius.Edu.CLI.csproj", "{4ED2E2A0-46C2-4E41-A8E9-7705559D39AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34A6FA42-09B6-48F4-B2A6-18894A559E21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34A6FA42-09B6-48F4-B2A6-18894A559E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34A6FA42-09B6-48F4-B2A6-18894A559E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34A6FA42-09B6-48F4-B2A6-18894A559E21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ED2E2A0-46C2-4E41-A8E9-7705559D39AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ED2E2A0-46C2-4E41-A8E9-7705559D39AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ED2E2A0-46C2-4E41-A8E9-7705559D39AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ED2E2A0-46C2-4E41-A8E9-7705559D39AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FAA281C4-1DE5-432A-BAB4-2AC416228500}
+	EndGlobalSection
+EndGlobal
