@@ -62,6 +62,7 @@ namespace Clarius.Edu.CLI
             var newDivision = base.GetParameterValue("/division:");
             var newGrade = base.GetParameterValue("/grade:");
             var newYear = base.GetParameterValue("/year:");
+            var newId = base.GetParameterValue("/id:");
 
             Log.Logger.Information($"Going to process {groupsToProcess.Count} groups...");
 
@@ -75,6 +76,7 @@ namespace Clarius.Edu.CLI
 
                 if (grp.InternalProfile != null)
                 {
+                    Log.Logger.Information($"Id:                    {grp.Id}");
                     Log.Logger.Information($"Level:                 {grp.Level}");
                     Log.Logger.Information($"Type:                  {grp.Type}");
                     Log.Logger.Information($"Grade:                 {grp.Grade}");
@@ -95,6 +97,7 @@ namespace Clarius.Edu.CLI
                             { Constants.PROFILE_GROUPLEVEL, newLevel ?? "" },
                             { Constants.PROFILE_GROUPTYPE, newType ?? "" },
                             { Constants.PROFILE_GROUPYEAR, newYear ?? "" },
+                            { Constants.PROFILE_GROUPID, newId ?? "" },
                         };
                     await grp.CreateExtension(Constants.PROFILE_GROUPEXTENSION_ID, customMetadata);
                     Log.Logger.Information("Group extension created!");
@@ -109,6 +112,7 @@ namespace Clarius.Edu.CLI
                             { Constants.PROFILE_GROUPLEVEL, newLevel ?? grp.Level },
                             { Constants.PROFILE_GROUPTYPE, newType ?? grp.Type },
                             { Constants.PROFILE_GROUPYEAR, newYear ?? grp.Year },
+                            { Constants.PROFILE_GROUPID, newId ?? grp.Id },
                         };
                     try
                     {
