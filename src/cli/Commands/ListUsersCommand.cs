@@ -24,7 +24,7 @@ namespace Clarius.Edu.CLI
                                 .WriteTo.Console(outputTemplate: "{Message}{NewLine}")
                                 .CreateLogger();
 
-            var users = Client.GetUsers(Client.GetUsers(), base.Grade, base.Division, base.EnglishLevel, base.Level, base.Type);
+            var users = Client.FilterUsers(Client.GetUsers(), base.Grade, base.Division, base.EnglishLevel, base.Level, base.Type);
 
             var list = new List<string>();
 
@@ -40,6 +40,10 @@ namespace Clarius.Edu.CLI
             int count = 0;
             foreach (var user in users)
             {
+                if (!string.IsNullOrEmpty(base.Filter) && !user.DisplayName.Contains(base.Filter, StringComparison.InvariantCultureIgnoreCase) && !user.UserPrincipalName.Contains(base.Filter, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    continue;
+                }
                 if (RawFormat)
                 {
                     list.Add($"{Client.RemoveDomainPart(user.UserPrincipalName)}");

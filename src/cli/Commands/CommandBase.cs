@@ -35,6 +35,7 @@ namespace Clarius.Edu.CLI
         internal string Type { get; private set; }
         internal string Division { get; private set; }
         internal string Grade { get; private set; }
+        internal string Year { get; private set; }
         internal User User { get; private set; }
         internal Microsoft.Graph.Group Group { get; private set; }
         internal string[] AliasesList { get; private set; }
@@ -281,6 +282,7 @@ namespace Clarius.Edu.CLI
             From = GetParameterValue("/from:");
             Folder = GetParameterValue("/folder:");
             OutputFile = GetParameterValue("/outputfile:");
+            Year = GetParameterValue("/year:");
 
             if (Level != null && !Client.ValidateLevel(Level))
             {

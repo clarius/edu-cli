@@ -24,7 +24,7 @@ namespace Clarius.Edu.CLI
             commands.Add(new ListGroupsCommand(args));
             commands.Add(new ArchiveTeamCommand(args));
             commands.Add(new SyncGroupsCommand(args));
-            commands.Add(new PromoteGroupCommand(args));
+            commands.Add(new PromoteTeamsCommand(args));
             commands.Add(new SyncUsersCommand(args));
             commands.Add(new CreateUsersCommand(args));
             commands.Add(new ListSectionsCommand(args));

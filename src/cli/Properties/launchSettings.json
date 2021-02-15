@@ -2,7 +2,7 @@
   "profiles": {
     "edu": {
       "commandName": "Project",
-      "commandLineArgs": "-cu /file:test-cu.csv"
+      "commandLineArgs": "-pt /level:inicial"
     }
   }
 }

@@ -8,6 +8,7 @@ namespace Clarius.Edu.Graph
     public static class SchoolManager
     {
         static List<Section> sections = new List<Section>();
+        static List<Level> levels = new List<Level>();
 
         static List<string> allGrades = new List<string> { Constants.GRADE_FIRST, Constants.GRADE_SECOND, Constants.GRADE_THIRD, Constants.GRADE_FOURTH, Constants.GRADE_FIFTH, Constants.GRADE_SIXTH };
         static List<string> allDivisions = new List<string> { Constants.DIVISION_A, Constants.DIVISION_B, Constants.DIVISION_C };
@@ -21,6 +22,10 @@ namespace Clarius.Edu.Graph
 
         static SchoolManager()
         {
+            levels.Add(new Level(Constants.LEVEL_INICIAL, new List<string>() { "julia.laplace" }));
+            levels.Add(new Level(Constants.LEVEL_PRIMARIA, new List<string>() { "monica.bassagaisteguy", "maria.veppo" }));
+            levels.Add(new Level(Constants.LEVEL_SECUNDARIA, new List<string>() { "mariana.dellape", "maria.lascano" }));
+
             // Inicial level
             sections.Add(new Section("Amarilla {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_FIRST }, allDivisions));
             sections.Add(new Section("Amarilla Taller de Artes Visuales {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_FIRST }, allDivisions));
@@ -239,20 +244,32 @@ namespace Clarius.Edu.Graph
             return null;
         }
     }
+    public class Level
+    {
+        public string Id { get; }
+        public List<string> TeamOwners { get; }
 
+        public Level(string id, List<string> teamOwners)
+        {
+            this.Id = id;
+            this.TeamOwners = teamOwners;
+        }
+    }
     public class Section
     {
         public string Id { get; }
         public string Level { get; }
         public List<string> Grades { get; }
         public List<string> Divisions { get; }
+        public string TeacherAlias { get; }
 
-        public Section(string id, string level, List<string> grades, List<string> divisions)
+        public Section(string id, string level, List<string> grades, List<string> divisions, string teacherAlias = null)
         {
             this.Id = id;
             this.Level = level;
             this.Grades = grades;
             this.Divisions = divisions;
+            this.TeacherAlias = teacherAlias;
         }
 
         public List<string> GetNames()
@@ -269,8 +286,6 @@ namespace Clarius.Edu.Graph
 
             return names;
         }
-
-
     }
 
 

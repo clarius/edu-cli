@@ -222,7 +222,7 @@ namespace Clarius.Edu.Graph
             return bar;
         }
 
-        public List<Microsoft.Graph.User> GetUsers(IEnumerable<Microsoft.Graph.User> users, string grade, string division, string languageLevel, string level, string type)
+        public List<Microsoft.Graph.User> FilterUsers(IEnumerable<Microsoft.Graph.User> users, string grade, string division, string languageLevel, string level, string type)
         {
             List<Microsoft.Graph.User> userList = new List<Microsoft.Graph.User>();
 
@@ -376,7 +376,7 @@ namespace Clarius.Edu.Graph
             return null;
 
         }
-        public List<GraphGroup> GetGroups(string groupType, string groupLevel, string groupGrade = null, string groupDivision = null)
+        public List<GraphGroup> GetGroups(string groupType, string groupLevel, string groupGrade = null, string groupDivision = null, string groupYear = null)
         {
             List<GraphGroup> groupList = new List<GraphGroup>();
 
@@ -401,6 +401,11 @@ namespace Clarius.Edu.Graph
                                 }
 
                                 if (!string.IsNullOrEmpty(groupDivision) && String.Compare((string)p.Extensions[0].AdditionalData[Constants.PROFILE_GROUPDIVISION], groupDivision, true) != 0)
+                                {
+                                    continue;
+                                }
+
+                                if (!string.IsNullOrEmpty(groupYear) && String.Compare((string)p.Extensions[0].AdditionalData[Constants.PROFILE_GROUPYEAR], groupYear, true) != 0)
                                 {
                                     continue;
                                 }
@@ -716,9 +721,20 @@ namespace Clarius.Edu.Graph
             return graphUsers.Where(p => new Guid(p.Id) == userId).Single();
         }
 
-        public GraphGroup GetGroupFromId(Guid groupId)
+        async public Task<GraphGroup> GetGroupFromId(Guid groupId, bool useCache = true)
         {
-            return graphGroups.Where(p => new Guid(p.Id) == groupId).Single();
+            if (useCache)
+            {
+                return graphGroups.Where(p => new Guid(p.Id) == groupId).Single();
+            }
+            else
+            {
+                var group = await client.Groups.Request().Top(1).Select(SelectGroupClause).Filter($"id eq '{groupId}'").Expand("extensions").GetAsync();
+                if (group.Count > 0)
+                    return group[0];
+            }
+
+            return null;
         }
 
         public GraphGroup GetGroupFromEmail(string groupEmail)

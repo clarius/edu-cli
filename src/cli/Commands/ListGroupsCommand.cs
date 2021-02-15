@@ -25,13 +25,14 @@ namespace Clarius.Edu.CLI
                                 .WriteTo.Console(outputTemplate: "{Message}{NewLine}")
                                 .CreateLogger();
 
-            var groups = Client.GetGroups(base.Type, base.Level, base.Grade, base.Division);
+            var groups = Client.GetGroups(base.Type, base.Level, base.Grade, base.Division, base.Year);
 
             var groupNames = new List<string>();
 
             int count = 0;
             foreach (var group in groups)
             {
+                var grp = Client.GetGroup(group);
                 if (base.Filter != null && !group.DisplayName.Contains(base.Filter, StringComparison.InvariantCultureIgnoreCase))
                     continue;
                 groupNames.Add($"{group.DisplayName}, {Client.RemoveDomainPart(group.MailNickname)}");
