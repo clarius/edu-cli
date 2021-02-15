@@ -39,9 +39,13 @@ namespace Clarius.Edu.CLI
                     Log.Logger.Information($"Updating {g.DisplayName}, {g.MailNickname} with 2020 postfix...");
                     var ng = new Group() { DisplayName = g.DisplayName + " (2020)" };
                     await Client.Graph.Groups[g.Id].Request().UpdateAsync(ng);
+                    Log.Logger.Information($"Archiving {g.DisplayName}, {g.MailNickname}...");
+                    await Client.Graph.Teams[g.Id].Archive(null).Request().PostAsync();
                 }
             }
         }
+
+        // inicial300-1eroA@ijmecitybell.edu.ar archivar a mano
 
         async public override Task RunInternal()
         {
@@ -51,8 +55,8 @@ namespace Clarius.Edu.CLI
 
             // Update DisplayName to include past year postfix (e.g. " (2020)")
             await UpdateGroupDisplayName(Graph.Constants.LEVEL_INICIAL, " (2020)");
-            await UpdateGroupDisplayName(Graph.Constants.LEVEL_PRIMARIA, " (2020)");
-            await UpdateGroupDisplayName(Graph.Constants.LEVEL_SECUNDARIA, " (2020)");
+            //await UpdateGroupDisplayName(Graph.Constants.LEVEL_PRIMARIA, " (2020)");
+            //await UpdateGroupDisplayName(Graph.Constants.LEVEL_SECUNDARIA, " (2020)");
 
             // int c = 0;
 

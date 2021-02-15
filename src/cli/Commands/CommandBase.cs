@@ -13,6 +13,7 @@ namespace Clarius.Edu.CLI
     {
         private const string DEBUG_PARAMETER = "/debug";
         private const string DISABLED_PARAMETER = "/disabled";
+        private const string VALUE_PARAMETER = "/value:";
 
         // TODO: the following two should belong to ListCalendar cmd
         internal string HasMeeting { get; private set; }
@@ -44,12 +45,11 @@ namespace Clarius.Edu.CLI
         internal Client Client { get; private set; }
         internal bool RawFormat { get; private set; }
         internal bool ExcelFormat { get; private set; }
-        internal List<string> StdIn { get; private set; }
+        internal bool Value { get; private set; }
 
         internal CommandBase(string[] args)
         {
             this.Arguments = args;
-            this.StdIn = new List<string>();
         }
         abstract public List<string> GetSupportedCommands();
 
@@ -57,6 +57,19 @@ namespace Clarius.Edu.CLI
         {
             Debug = ReadBoolValue(DEBUG_PARAMETER);
             Disabled = ReadBoolValue(DISABLED_PARAMETER);
+            var str = GetParameterValue(VALUE_PARAMETER);
+            if (str == null && RequiresValue)
+            {
+                Log.Logger.Error($"You must provide a /value parameter for this command to work");
+                return false;
+            }
+            bool flag = false;
+            if (str != null && !bool.TryParse(str, out flag))
+            {
+                Log.Logger.Error($"Invalid value {str} for /value: parameter. You must specify either true or false.");
+                return false;
+            }
+            Value = flag;
 
             Output = GetParameterValue("/output:");
             if (string.IsNullOrEmpty(Output))
@@ -143,6 +156,7 @@ namespace Clarius.Edu.CLI
         public virtual bool RequiresUser => false;
         public virtual bool RequiresGroup => false;
         public virtual bool RequiresLevel => false;
+        public virtual bool RequiresValue => false;
 
         public virtual string Name => "Unnamed";
 

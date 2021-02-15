@@ -74,7 +74,7 @@ namespace Clarius.Edu.CLI
             if (errorCount > 0)
             {
                 Log.Logger.Error("Please fix the errors above and run this command again");
-                return;
+                //return;
             }
 
             recordCount = 0;
@@ -87,11 +87,6 @@ namespace Clarius.Edu.CLI
                 foreach (var csvUser in records)
                 {
                     var user = await Client.GetUserFromUserPrincipalName(csvUser.Username);
-                    if (user != null)
-                    {
-                        Log.Logger.Error($"User {csvUser.Username} already exists!");
-                        continue;
-                    }
 
                     await Client.CreateUser(csvUser.Username, csvUser.Password, csvUser.FirstName, csvUser.LastName, csvUser.Type, csvUser.Level, csvUser.Grade, csvUser.Division, "0", DateTime.Now.Year.ToString(), "");
                     Log.Logger.Information($"User created: {csvUser.Username}");

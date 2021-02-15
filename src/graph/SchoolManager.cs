@@ -25,7 +25,7 @@ namespace Clarius.Edu.Graph
             sections.Add(new Section("Amarilla {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_FIRST }, allDivisions));
             sections.Add(new Section("Amarilla Taller de Artes Visuales {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_FIRST }, allDivisions));
             sections.Add(new Section("Amarilla Teatro {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_FIRST }, allDivisions));
-            sections.Add(new Section("Amarilla Plastica {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_FIRST }, allDivisions));
+            sections.Add(new Section("Amarilla Catequesis {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_FIRST }, allDivisions));
             sections.Add(new Section("Amarilla Musica {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_FIRST }, allDivisions));
             sections.Add(new Section("Amarilla Inglés {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_FIRST }, allDivisions));
             sections.Add(new Section("Amarilla Informatica {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_FIRST }, allDivisions));
@@ -34,7 +34,7 @@ namespace Clarius.Edu.Graph
             sections.Add(new Section("Verde {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_SECOND }, allDivisions));
             sections.Add(new Section("Verde Taller de Artes Visuales {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_SECOND }, allDivisions));
             sections.Add(new Section("Verde Teatro {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_SECOND }, allDivisions));
-            sections.Add(new Section("Verde Plastica {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_SECOND }, allDivisions));
+            sections.Add(new Section("Verde Catequesis {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_SECOND }, allDivisions));
             sections.Add(new Section("Verde Musica {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_SECOND }, allDivisions));
             sections.Add(new Section("Verde Inglés {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_SECOND }, allDivisions));
             sections.Add(new Section("Verde Informatica {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_SECOND }, allDivisions));
@@ -43,7 +43,7 @@ namespace Clarius.Edu.Graph
             sections.Add(new Section("Azul {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_THIRD }, allDivisions));
             sections.Add(new Section("Azul Taller de Artes Visuales {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_THIRD }, allDivisions));
             sections.Add(new Section("Azul Teatro {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_THIRD }, allDivisions));
-            sections.Add(new Section("Azul Plastica {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_THIRD }, allDivisions));
+            sections.Add(new Section("Azul Catequesis {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_THIRD }, allDivisions));
             sections.Add(new Section("Azul Musica {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_THIRD }, allDivisions));
             sections.Add(new Section("Azul Inglés {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_THIRD }, allDivisions));
             sections.Add(new Section("Azul Informatica {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_THIRD }, allDivisions));

@@ -103,9 +103,16 @@ namespace Clarius.Edu.Graph
             }
         }
 
-        public async Task Archive (bool readOnlySharepoint)
+        public async Task Archive (bool archive = true)
         {
-            await client.Graph.Teams[graphGroup.Id].Archive(readOnlySharepoint).Request().PostAsync();
+            if (archive)
+            {
+                await client.Graph.Teams[graphGroup.Id].Archive().Request().PostAsync();
+            }
+            else
+            {
+                await client.Graph.Teams[graphGroup.Id].Unarchive().Request().PostAsync();
+            }
         }
 
         public async Task ChangeDisplayName(string displayName)

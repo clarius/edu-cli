@@ -22,13 +22,14 @@ namespace Clarius.Edu.CLI
             commands.Add(new ListUsersCommand(args));
             commands.Add(new GroupMembersCommand(args));
             commands.Add(new ListGroupsCommand(args));
-            commands.Add(new ViewGroupCommand(args));
+            commands.Add(new ArchiveTeamCommand(args));
             commands.Add(new SyncGroupsCommand(args));
             commands.Add(new PromoteGroupCommand(args));
             commands.Add(new SyncUsersCommand(args));
             commands.Add(new CreateUsersCommand(args));
             commands.Add(new ListSectionsCommand(args));
             commands.Add(new ValidateDataCommand(args));
+            commands.Add(new ArchiveTeamCommand(args));
         }
 
         internal List<ICommand> Commands { get { return commands; } }

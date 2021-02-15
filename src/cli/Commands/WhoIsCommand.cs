@@ -22,11 +22,6 @@ namespace Clarius.Edu.CLI
 
         async public override Task RunInternal()
         {
-            if (base.StdIn.Count > 0)
-            {
-                Log.Logger.Information($"HAS INPUT!!!");
-            }
-
             if (User != null)
             {
                 var usr = Client.GetUser(User);
@@ -44,7 +39,7 @@ namespace Clarius.Edu.CLI
 
                 if (usr.InternalProfile != null)
                 {
-                    Log.Logger.Information("--- Profile -=-");
+                    Log.Logger.Information("--- Profile ---");
                     Log.Logger.Information($"Id:                    {usr.Id}");
                     Log.Logger.Information($"Level:                 {usr.Level}");
                     Log.Logger.Information($"Type:                  {usr.Type}");
@@ -66,10 +61,16 @@ namespace Clarius.Edu.CLI
                 .WriteTo.Console(outputTemplate: "{Message}{NewLine}")
                 .CreateLogger();
 
+                var team = await Client.Graph.Teams[base.Group.Id]
+                    .Request()
+                    .Select("isArchived")
+                    .GetAsync();
+
                 Log.Logger.Information("");
                 Log.Logger.Information($"DisplayName:           {Group.DisplayName}");
                 Log.Logger.Information($"Id:                    {Group.Id}");
                 Log.Logger.Information($"Nickname               {Group.MailNickname}");
+                Log.Logger.Information($"IsArchived:            {team.IsArchived}");
 
                 if (grp.InternalProfile != null)
                 {
