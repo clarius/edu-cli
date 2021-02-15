@@ -22,6 +22,11 @@ namespace Clarius.Edu.CLI
 
         async public override Task RunInternal()
         {
+            if (base.StdIn.Count > 0)
+            {
+                Log.Logger.Information($"HAS INPUT!!!");
+            }
+
             if (User != null)
             {
                 var usr = Client.GetUser(User);

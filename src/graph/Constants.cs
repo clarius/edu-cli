@@ -36,6 +36,7 @@ namespace Clarius.Edu.Graph
         public const string GRADE_SIXTH = "6to";
 
         public const string GROUP_TYPE_CLASS = "Clase";
+        public const string GROUP_TYPE_SUPPORT = "Soporte";
 
         public const string LEVEL_PRIMARIA = "Primaria";
         public const string LEVEL_SECUNDARIA = "Secundaria";

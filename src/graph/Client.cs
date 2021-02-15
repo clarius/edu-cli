@@ -37,11 +37,11 @@ namespace Clarius.Edu.Graph
             {
                 this.eduConfig = System.Text.Json.JsonSerializer.Deserialize(System.IO.File.ReadAllText(config), typeof(EducationConfig)) as EducationConfig;
             }
-            catch(FileNotFoundException)
+            catch (FileNotFoundException)
             {
                 throw new ArgumentException($"Config file {config} not found. Please specify one using the /config: parameter");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw new ArgumentException($"Error opening {config} file.");
             }
@@ -247,6 +247,8 @@ namespace Clarius.Edu.Graph
                 }
                 catch (Exception ex)
                 {
+                    Log.Logger.Error($"Error on user {p.UserPrincipalName}: {ex.Message}");
+                    continue;
                 }
 
                 userList.Add(p);
@@ -269,7 +271,7 @@ namespace Clarius.Edu.Graph
                         {
                             if ((string)p.Extensions[0].AdditionalData[Constants.PROFILE_USERTYPE] == Clarius.Edu.Graph.Constants.USER_TYPE_STUDENT)
                             {
-                                if ((string)p.Extensions[0].AdditionalData[Constants.PROFILE_USERLEVEL] == level)     
+                                if ((string)p.Extensions[0].AdditionalData[Constants.PROFILE_USERLEVEL] == level)
                                 {
                                     if ((string)p.Extensions[0].AdditionalData[Constants.PROFILE_USERGRADE] == grade)
                                     {
@@ -432,7 +434,7 @@ namespace Clarius.Edu.Graph
                         {
                             if ((string)p.Extensions[0].AdditionalData[Constants.PROFILE_USERTYPE] == userType)
                             {
-                                if (userLevel != null && (string)p.Extensions[0].AdditionalData[Constants.PROFILE_USERLEVEL] == userLevel)   
+                                if (userLevel != null && (string)p.Extensions[0].AdditionalData[Constants.PROFILE_USERLEVEL] == userLevel)
                                 {
                                     userList.Add(p);
                                 }
@@ -503,7 +505,7 @@ namespace Clarius.Edu.Graph
             return newGroup;
         }
 
-//        public async Task<GraphUser> CreateUser(string username, string password, string firstname, string lastname, string userType, string userLevel, string userGrade, string userDivision, string userLanguagelevel, string usageLocation = "AR")
+        //        public async Task<GraphUser> CreateUser(string username, string password, string firstname, string lastname, string userType, string userLevel, string userGrade, string userDivision, string userLanguagelevel, string usageLocation = "AR")
         public async Task<GraphUser> CreateUser(string username, string password, string firstname, string lastname, string userType, string userLevel, string userGrade, string userDivision, string userLanguagelevel, string userYear, string userNationalID)
         {
             var user = new GraphUser
@@ -553,10 +555,9 @@ namespace Clarius.Edu.Graph
                             { Constants.PROFILE_USERLEVEL, userLevel },
                             { Constants.PROFILE_USERGRADE, userGrade },
                             { Constants.PROFILE_USERDIVISION, userDivision },
-                            { Constants.PROFILE_USERENGLISHLEVEL, userLanguagelevel }
+                            { Constants.PROFILE_USERENGLISHLEVEL, userLanguagelevel },
+                            { Constants.PROFILE_USERYEAR, userYear }
                         };
-
-
 
             await GetUser(addedUser).CreateExtension(Constants.PROFILE_USEREXTENSION_ID, customMetadata);
 
@@ -752,12 +753,13 @@ namespace Clarius.Edu.Graph
             return false;
         }
 
-        public bool ValidateGroupType(string type)
+        public bool ValidateGroupType(string groupType)
         {
-            type = type.ToLower();
-
-            if (type.Equals(Constants.GROUP_TYPE_CLASS, StringComparison.InvariantCultureIgnoreCase))
-                return true;
+            foreach (var l in SchoolManager.GroupTypes)
+            {
+                if (string.Equals(groupType, l, StringComparison.InvariantCultureIgnoreCase))
+                    return true;
+            }
 
             return false;
         }

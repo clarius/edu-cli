@@ -14,7 +14,7 @@ namespace Clarius.Edu.CLI
         private const string DEBUG_PARAMETER = "/debug";
         private const string DISABLED_PARAMETER = "/disabled";
 
-        // the following two should belong to ListCalendar cmd
+        // TODO: the following two should belong to ListCalendar cmd
         internal string HasMeeting { get; private set; }
         internal string Organizer { get; private set; }
 
@@ -38,17 +38,19 @@ namespace Clarius.Edu.CLI
         internal Microsoft.Graph.Group Group { get; private set; }
         internal string[] AliasesList { get; private set; }
         internal string AliasesFile { get; private set; }
+        internal string OutputFile { get; private set; }
         internal bool Verbose { get; private set; }
         internal string[] Arguments { get; private set; }
         internal Client Client { get; private set; }
         internal bool RawFormat { get; private set; }
+        internal bool ExcelFormat { get; private set; }
+        internal List<string> StdIn { get; private set; }
 
         internal CommandBase(string[] args)
         {
             this.Arguments = args;
+            this.StdIn = new List<string>();
         }
-        internal CommandBase() { }
-
         abstract public List<string> GetSupportedCommands();
 
         virtual public async Task<bool> Run(string[] args, bool verbose)
@@ -57,10 +59,18 @@ namespace Clarius.Edu.CLI
             Disabled = ReadBoolValue(DISABLED_PARAMETER);
 
             Output = GetParameterValue("/output:");
-            RawFormat = Output != null && string.Equals(Output, "raw", StringComparison.InvariantCultureIgnoreCase);
+            if (string.IsNullOrEmpty(Output))
+            {
+                RawFormat = GetParameterValue("/raw") != null;
+            }
+            else
+            {
+                RawFormat = string.Equals(Output, "raw", StringComparison.InvariantCultureIgnoreCase);
+                ExcelFormat = string.Equals(Output, "excel", StringComparison.InvariantCultureIgnoreCase);
+            }
 
             Config = GetParameterValue("/config:") ?? "settings.config";
-           
+
             Client = new Client(Config, RawFormat);
             this.Arguments = args;
             this.Verbose = verbose;
@@ -132,6 +142,7 @@ namespace Clarius.Edu.CLI
 
         public virtual bool RequiresUser => false;
         public virtual bool RequiresGroup => false;
+        public virtual bool RequiresLevel => false;
 
         public virtual string Name => "Unnamed";
 
@@ -241,9 +252,21 @@ namespace Clarius.Edu.CLI
             HasMeeting = GetParameterValue("/hasmeeting:");
             Filter = GetParameterValue("/filter:");
             Level = GetParameterValue("/level:");
+
+            if (string.IsNullOrEmpty(Level) && RequiresLevel)
+            {
+                Log.Logger.Error($"/level argument is required");
+                return false;
+            }
+            if (!string.IsNullOrEmpty(Level) && !Client.ValidateLevel(Level))
+            {
+                Log.Logger.Error($"Invalid value '{Level}' specified for /level argument");
+                return false;
+            }
             Organizer = GetParameterValue("/organizer:");
             From = GetParameterValue("/from:");
             Folder = GetParameterValue("/folder:");
+            OutputFile = GetParameterValue("/outputfile:");
 
             if (Level != null && !Client.ValidateLevel(Level))
             {

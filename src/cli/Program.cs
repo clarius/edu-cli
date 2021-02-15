@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using Clarius.Edu.Graph;
+using Serilog;
 using Serilog.Events;
 using System;
 using System.Collections.Generic;
@@ -30,13 +31,12 @@ namespace Clarius.Edu.CLI
             }
 
             var result = await commandRouter.Execute(args[0]);
-
         }
 
-        
+
         static void PrintHelp()
         {
-            Console.WriteLine("Supported commands: edu.exe [username|f:filename] [command] [/v]");
+            Console.WriteLine("Supported commands: edu.exe [command] [username|groupname|/file:] [/v]");
             Console.WriteLine("");
 
             foreach (var cmd in commandRouter.Commands)
@@ -97,7 +97,5 @@ namespace Clarius.Edu.CLI
 
             return false;
         }
-
-
     }
 }

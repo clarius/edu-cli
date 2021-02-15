@@ -117,7 +117,7 @@ namespace Clarius.Edu.CLI
                     try
                     {
                         await grp.UpdateExtension(Constants.PROFILE_GROUPEXTENSION_ID, customMetadata);
-                        Log.Logger.Information("User extension updated!");
+                        Log.Logger.Information("Group extension updated!");
                     }
                     catch (Exception ex)
                     {

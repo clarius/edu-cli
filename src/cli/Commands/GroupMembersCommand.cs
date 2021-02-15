@@ -36,18 +36,27 @@ namespace Clarius.Edu.CLI
             }
 
             var members = await Client.Graph.Groups[group.Id].Members.Request().GetAsync();
+            var list = new List<string>();
 
             foreach (var member in members)
             {
                 var usr = Client.GetUserFromId(new Guid(member.Id));
                 if (RawFormat)
                 {
-                    Log.Logger.Information($"{Client.RemoveDomainPart(usr.UserPrincipalName)}");
+                    list.Add($"{Client.RemoveDomainPart(usr.UserPrincipalName)}");
                 }
                 else
                 {
-                    Log.Logger.Information($"{usr.DisplayName}");
+                    list.Add($"{usr.DisplayName}");
                 }
+            }
+
+            list.Sort();
+            list.ForEach(Log.Logger.Information);
+
+            if (!RawFormat)
+            {
+                Log.Logger.Information($"Total items: {members.Count}");
             }
 
         }
