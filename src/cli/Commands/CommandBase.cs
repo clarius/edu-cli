@@ -196,10 +196,9 @@ namespace Clarius.Edu.CLI
             {
                 AliasesList = System.IO.File.ReadAllLines(AliasesFile);
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                // a file not found is expected, as this method can be called without knowing if the user has specified a filename or an username
-                return null;
+                throw ex;
             }
             catch (Exception ex)
             {

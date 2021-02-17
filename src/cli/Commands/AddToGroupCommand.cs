@@ -107,6 +107,7 @@ namespace Clarius.Edu.CLI
         }
 
         public override bool UseCache => true;
+        public override bool RequiresUser => true;
 
         public override string Name => "Add To Group";
         public override string Description => "Add a given user or a list of users (text file) to a given group, i.e. edu.exe -atg juan.perez preceptores-inicial or edu.exe -atg usuarios.txt mynewgroup";

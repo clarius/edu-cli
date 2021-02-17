@@ -86,9 +86,7 @@ namespace Clarius.Edu.CLI
 
                 foreach (var csvUser in records)
                 {
-                    var user = await Client.GetUserFromUserPrincipalName(csvUser.Username);
-
-                    await Client.CreateUser(csvUser.Username, csvUser.Password, csvUser.FirstName, csvUser.LastName, csvUser.Type, csvUser.Level, csvUser.Grade, csvUser.Division, "0", DateTime.Now.Year.ToString(), "");
+                    await Client.CreateUser(csvUser.Username, csvUser.Password, csvUser.FirstName.Trim(), csvUser.LastName.Trim(), csvUser.Type, csvUser.Level, csvUser.Grade, csvUser.Division, "0", DateTime.Now.Year.ToString(), "");
                     Log.Logger.Information($"User created: {csvUser.Username}");
                     recordCount++;
                 }

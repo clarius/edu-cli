@@ -12,6 +12,7 @@ namespace Clarius.Edu.CLI
     {
         public override bool UseCache => true;
         public override bool RequiresGroup => true;
+        public override bool RequiresValue => true;
 
         public override string Name => "Archive Team";
         public override string Description => "Archive/unarchive a Team. Usage: edu.exe groupemail /value:[true|false]";

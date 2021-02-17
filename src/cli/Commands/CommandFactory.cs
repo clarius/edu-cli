@@ -30,6 +30,7 @@ namespace Clarius.Edu.CLI
             commands.Add(new ListSectionsCommand(args));
             commands.Add(new ValidateDataCommand(args));
             commands.Add(new ArchiveTeamCommand(args));
+            commands.Add(new DeleteUsersCommand(args));
         }
 
         internal List<ICommand> Commands { get { return commands; } }
