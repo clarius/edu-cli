@@ -22,9 +22,9 @@ namespace Clarius.Edu.Graph
 
         static SchoolManager()
         {
-            levels.Add(new Level(Constants.LEVEL_INICIAL, new List<string>() { "julia.laplace" }));
-            levels.Add(new Level(Constants.LEVEL_PRIMARIA, new List<string>() { "monica.bassagaisteguy", "maria.veppo" }));
-            levels.Add(new Level(Constants.LEVEL_SECUNDARIA, new List<string>() { "mariana.dellape", "maria.lascano" }));
+            levels.Add(new Level(Constants.LEVEL_INICIAL, new List<string>() { "julia.laplace@ijmecitybell.edu.ar" }));
+            levels.Add(new Level(Constants.LEVEL_PRIMARIA, new List<string>() { "monica.bassagaisteguy@ijmecitybell.edu.ar", "maria.veppo@ijmecitybell.edu.ar", "patriciosalas@ijmecitybell.onmicrosoft.com" }));
+            levels.Add(new Level(Constants.LEVEL_SECUNDARIA, new List<string>() { "mariana.dellape@ijmecitybell.edu.ar", "maria.lascano@ijmecitybell.edu.ar", "patriciosalas@ijmecitybell.onmicrosoft.com" }));
 
             // Inicial level
             sections.Add(new Section("Amarilla {0} {1}", Constants.LEVEL_INICIAL, new List<string> { Constants.GRADE_FIRST }, allDivisions));
@@ -118,6 +118,10 @@ namespace Clarius.Edu.Graph
             // TODO IJME: missing ed. fisica 5to A? (there are 2, should be 3, one per trimester)
         }
 
+        static public Level GetLevel(string level)
+        {
+            return levels.Where(p => string.Equals(level, p.Id, StringComparison.InvariantCultureIgnoreCase)).Single();
+        }
         static public IEnumerable<Section> GetSections(string level)
         {
             return sections.Where(p => string.Equals(level, p.Level, StringComparison.InvariantCultureIgnoreCase));

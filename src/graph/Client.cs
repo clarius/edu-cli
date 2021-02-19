@@ -677,6 +677,15 @@ namespace Clarius.Edu.Graph
                 return eduConfig;
             }
         }
+        public GraphGroup GetGroupFromDisplayName(string displayName)
+        {
+            if (useCache)
+            {
+                return graphGroups.Where(p => string.Compare(p.DisplayName, displayName, true) == 0).SingleOrDefault();
+            }
+
+            return null;
+        }
 
         public async Task<GraphGroup> GetGroupFromAlias(string groupAlias)
         {
@@ -729,9 +738,16 @@ namespace Clarius.Edu.Graph
             }
             else
             {
-                var group = await client.Groups.Request().Top(1).Select(SelectGroupClause).Filter($"id eq '{groupId}'").Expand("extensions").GetAsync();
-                if (group.Count > 0)
-                    return group[0];
+                try
+                {
+                    var group = await client.Groups.Request().Top(1).Select(SelectGroupClause).Filter($"id eq '{groupId}'").Expand("extensions").GetAsync();
+                    if (group.Count > 0)
+                        return group[0];
+                }
+                catch
+                {
+                    return null;
+                }
             }
 
             return null;
@@ -756,6 +772,16 @@ namespace Clarius.Edu.Graph
             }
 
             return educationUsers.Where(p => new Guid(p.Id) == userId).Single();
+        }
+
+        public EducationUser GetEducationUserFromAlias(string alias)
+        {
+            if (educationUsers == null)
+            {
+                throw new Exception("educationUsers not initialized, please call Client.Connect with a flag to do so");
+            }
+
+            return educationUsers.Where(p => string.Compare(p.UserPrincipalName, alias, true) == 0).Single();
         }
 
         public bool ValidateUserType(string userType)
