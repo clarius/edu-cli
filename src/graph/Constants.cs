@@ -19,6 +19,8 @@ namespace Clarius.Edu.Graph
         public const string USER_TYPE_IT = "IT";
         public const string USER_TYPE_TEST = "Test";
         public const string USER_TYPE_EGRESADO = "Egresado";
+        public const string USER_TYPE_CUENTA = "Cuenta";
+        public const string USER_TYPE_BIBLIOTECA = "Biblioteca";
 
         public const string DIVISION_A = "A";
         public const string DIVISION_B = "B";

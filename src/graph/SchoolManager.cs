@@ -17,7 +17,7 @@ namespace Clarius.Edu.Graph
         static List<string> grades123 = new List<string> { Constants.GRADE_FIRST, Constants.GRADE_THIRD, Constants.GRADE_FIFTH };
         static List<string> grades246 = new List<string> { Constants.GRADE_SECOND, Constants.GRADE_FOURTH, Constants.GRADE_SIXTH };
         static List<string> grades456 = new List<string> { Constants.GRADE_FOURTH, Constants.GRADE_FIFTH, Constants.GRADE_SIXTH };
-        static List<string> allUserTypes = new List<string> { Constants.USER_TYPE_STUDENT, Constants.USER_TYPE_TEACHER, Constants.USER_TYPE_TEST, Constants.USER_TYPE_PRECEPTOR, Constants.USER_TYPE_IT, Constants.USER_TYPE_FUNDACION, Constants.USER_TYPE_EGRESADO };
+        static List<string> allUserTypes = new List<string> { Constants.USER_TYPE_STUDENT, Constants.USER_TYPE_TEACHER, Constants.USER_TYPE_TEST, Constants.USER_TYPE_PRECEPTOR, Constants.USER_TYPE_IT, Constants.USER_TYPE_FUNDACION, Constants.USER_TYPE_EGRESADO, Constants.USER_TYPE_CUENTA, Constants.USER_TYPE_BIBLIOTECA };
         static List<string> allGroupTypes = new List<string> { Constants.GROUP_TYPE_CLASS, Constants.USER_TYPE_TEACHER };
 
         static SchoolManager()
