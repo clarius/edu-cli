@@ -1,4 +1,4 @@
-﻿using Serilog;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -74,7 +74,7 @@ namespace Clarius.Edu.CLI
             if (errorCount > 0)
             {
                 Log.Logger.Error("Please fix the errors above and run this command again");
-                //return;
+                return;
             }
 
             recordCount = 0;
