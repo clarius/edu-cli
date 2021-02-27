@@ -1,6 +1,7 @@
 ﻿using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Clarius.Edu.CLI
@@ -8,7 +9,7 @@ namespace Clarius.Edu.CLI
     internal class GroupMembersCommand : CommandBase
     {
         public override bool UseCache => true;
-        public override bool RequiresUser => false;
+        public override bool RequiresGroup => true;
 
         internal GroupMembersCommand(string[] args) : base(args)
         {
@@ -23,9 +24,10 @@ namespace Clarius.Edu.CLI
 
             var group = base.Group;
 
+            // we need to check for this as we don't support specifying a file with group aliases just yet
             if (group == null)
             {
-                Log.Logger.Error($"Group '{Arguments[1]}' not found");
+                Log.Logger.Error($"You must specify a single group for this command to work");
                 return;
             }
 
