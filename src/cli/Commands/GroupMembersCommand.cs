@@ -21,7 +21,7 @@ namespace Clarius.Edu.CLI
                                 .WriteTo.Console(outputTemplate: "{Message}{NewLine}")
                                 .CreateLogger();
 
-            var group = Client.GetGroupFromEmail(Arguments[1]);
+            var group = base.Group;
 
             if (group == null)
             {
